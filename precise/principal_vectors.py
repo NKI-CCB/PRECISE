@@ -72,7 +72,7 @@ class PVComputation:
         the domain adaptation is sensible, a diagonal matrix should be obtained.
     """
 
-    def __init__(self, n_factors,n_pv,
+    def __init__(self, n_factors, n_pv,
                 dim_reduction='pca',
                 dim_reduction_target=None,
                 project_on=0):
@@ -97,12 +97,15 @@ class PVComputation:
     		Where data should be projected on. 0 means source PVs, -1 means target PVs and 1 means
             both PVs.
         """
-        self.n_factors = n_factors
+        if type(n_factors) == int:
+            self.n_factors = {'source': n_factors, 'target': n_factors}
+        else:
+            self.n_factors = n_factors
         self.n_pv = n_pv
         self.dim_reduction_method_source = dim_reduction
         self.dim_reduction_method_target = dim_reduction_target or dim_reduction
-        self.dim_reduction_source = self._process_dim_reduction(self.dim_reduction_method_source)
-        self.dim_reduction_target = self._process_dim_reduction(self.dim_reduction_method_target)
+        self.dim_reduction_source = self._process_dim_reduction(self.dim_reduction_method_source, self.n_factors['source'])
+        self.dim_reduction_target = self._process_dim_reduction(self.dim_reduction_method_target, self.n_factors['target'])
 
         self.source_components_ = None
         self.source_explained_variance_ratio_ = None
@@ -110,9 +113,9 @@ class PVComputation:
         self.target_explained_variance_ratio_ = None
         self.cosine_similarity_matrix_ = None
 
-    def _process_dim_reduction(self, dim_reduction):
+    def _process_dim_reduction(self, dim_reduction, n_factors):
         if type(dim_reduction) == str:
-            return process_dim_reduction(method=dim_reduction, n_dim=self.n_factors)
+            return process_dim_reduction(method=dim_reduction, n_dim=n_factors)
         else:
             return dim_reduction
 
@@ -139,10 +142,12 @@ class PVComputation:
         """
         # Compute factors independently for source and target. Orthogonalize the basis
         Ps = self.dim_reduction_source.fit(X_source, y_source).components_
-        Ps = scipy.linalg.orth(Ps.transpose()).transpose()
+        if self.dim_reduction_method_source != 'pca':
+            Ps = scipy.linalg.orth(Ps.transpose()).transpose()
 
         Pt = self.dim_reduction_target.fit(X_target, y_source).components_
-        Pt = scipy.linalg.orth(Pt.transpose()).transpose()
+        if self.dim_reduction_method_target != 'pca':
+            Pt = scipy.linalg.orth(Pt.transpose()).transpose()
 
         # Compute the principal factors
         self.compute_principal_vectors(Ps, Pt)
