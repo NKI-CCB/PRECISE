@@ -104,6 +104,7 @@ class PVComputation:
         self.n_pv = n_pv
         self.dim_reduction_method_source = dim_reduction
         self.dim_reduction_method_target = dim_reduction_target or dim_reduction
+        
         self.dim_reduction_source = self._process_dim_reduction(self.dim_reduction_method_source, self.n_factors['source'])
         self.dim_reduction_target = self._process_dim_reduction(self.dim_reduction_method_target, self.n_factors['target'])
 

@@ -7,7 +7,7 @@ from numpy.distutils.system_info import get_info
 
 setup(
     name='precise',
-    version='1.0',
+    version='1.2',
     description='Patient Response Estimation Corrected by Interpolation of Subspaces Embeddings',
     author='Soufiane Mourragui',
     author_email='s.mourragui@nki.nl',

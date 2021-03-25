@@ -32,7 +32,7 @@ from sklearn.model_selection import GridSearchCV, GroupKFold
 from sklearn.kernel_ridge import KernelRidge
 from sklearn.linear_model import ElasticNet, Ridge
 from sklearn.neighbors import KNeighborsRegressor
-from sklearn.externals.joblib import Parallel, delayed
+from joblib import Parallel, delayed
 from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import StandardScaler
 from copy import deepcopy
