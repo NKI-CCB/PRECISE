@@ -72,12 +72,16 @@ class IntermediateFactors:
         self.n_jobs = 1
 
     def _compute_principal_vectors(self):
-    	n_factors = np.min([self.source_components_.shape[0],\
-    					self.target_components_.shape[0]])
+        n_pv = np.min([self.source_components_.shape[0],
+                    self.target_components_.shape[0]])
+        n_factors = {
+            'source': self.source_components_.shape[0],
+            'target': self.target_components_.shape[0]
+        }
 
-    	self.principal_vectors_ = PVComputation(n_factors, n_factors)
-    	self.principal_vectors_.compute_principal_vectors(self.source_components_,\
-    													self.target_components_)
+        self.principal_vectors_ = PVComputation(n_factors, n_pv)
+        self.principal_vectors_.compute_principal_vectors(self.source_components_,
+                                                        self.target_components_)
 
     def _compute_flow_time(t, principal_vectors):
         Pi = np.sin( (1-t) * principal_vectors.angles_)\

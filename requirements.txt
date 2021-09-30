@@ -1,0 +1,30 @@
+appnope==0.1.0
+backcall==0.2.0
+certifi==2020.6.20
+decorator==4.4.2
+ipykernel @ file:///opt/concourse/worker/volumes/live/43eaf185-e9cd-4e78-5afa-c19accf1339d/volume/ipykernel_1596206683810/work/dist/ipykernel-5.3.4-py3-none-any.whl
+ipython @ file:///opt/concourse/worker/volumes/live/8c453bb6-500b-4747-778c-a236ae4a574d/volume/ipython_1593447395779/work
+ipython-genutils==0.2.0
+jedi @ file:///opt/concourse/worker/volumes/live/6806909a-570d-4af7-44c0-77bee22df359/volume/jedi_1611333753991/work
+joblib==1.0.1
+jupyter-client @ file:///tmp/build/80754af9/jupyter_client_1601311786391/work
+jupyter-core==4.6.3
+numpy==1.19.5
+pandas==1.1.5
+parso @ file:///tmp/build/80754af9/parso_1596826841367/work
+pexpect==4.8.0
+pickleshare==0.7.5
+precise @ file:///Users/soufiane/Documents/projects/src/PRECISE
+prompt-toolkit @ file:///tmp/build/80754af9/prompt-toolkit_1602688806899/work
+ptyprocess==0.6.0
+Pygments @ file:///tmp/build/80754af9/pygments_1600458456400/work
+python-dateutil==2.8.1
+pytz==2021.1
+pyzmq==19.0.2
+scikit-learn==0.24.1
+scipy==1.5.4
+six==1.15.0
+threadpoolctl==2.1.0
+tornado==6.0.4
+traitlets==4.3.3
+wcwidth @ file:///tmp/build/80754af9/wcwidth_1593447189090/work

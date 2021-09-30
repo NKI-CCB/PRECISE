@@ -374,6 +374,8 @@ class ConsensusRepresentation(BaseEstimator):
         self.n_representations = n_representations
         self.use_data = use_data
 
+        self.mean_center = mean_center
+        self.std_unit = std_unit
         self.standard_scaler_input_ = StandardScaler(with_mean=mean_center, with_std=std_unit)
         self.standard_scaler_source_ = StandardScaler(with_mean=mean_center, with_std=std_unit)
         self.standard_scaler_target_ = StandardScaler(with_mean=mean_center, with_std=std_unit)
@@ -418,7 +420,7 @@ class ConsensusRepresentation(BaseEstimator):
         Parameters
         -------
         X: numpy.ndarray, shape (n_samples, n_genes)
-            Genomics data to consider
+            Source data to consider
 
         y: numpy.ndarray, shape(n_samples, 1), optional, default to None
             Response data (optional, just for compliance with BaseEstimator)
