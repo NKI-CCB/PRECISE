@@ -28,7 +28,7 @@ References
 import numpy as np
 import pandas as pd
 from pathlib import Path
-from sklearn.externals.joblib import Parallel, delayed
+from joblib import Parallel, delayed
 from scipy.stats import ks_2samp
 
 from precise.principal_vectors import PVComputation

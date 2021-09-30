@@ -144,10 +144,12 @@ class PVComputation:
         Ps = self.dim_reduction_source.fit(X_source, y_source).components_
         if self.dim_reduction_method_source != 'pca':
             Ps = scipy.linalg.orth(Ps.transpose()).transpose()
+        self.Ps_ = Ps
 
         Pt = self.dim_reduction_target.fit(X_target, y_source).components_
         if self.dim_reduction_method_target != 'pca':
             Pt = scipy.linalg.orth(Pt.transpose()).transpose()
+        self.Pt_ = Pt
 
         # Compute the principal factors
         self.compute_principal_vectors(Ps, Pt)

@@ -23,7 +23,7 @@ References
 import numpy as np
 import pandas as pd
 from pathlib import Path
-from sklearn.externals.joblib import Parallel, delayed
+from joblib import Parallel, delayed
 
 from precise.principal_vectors import PVComputation
 
