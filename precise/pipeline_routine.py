@@ -106,7 +106,7 @@ class FlowProjector(BaseEstimator):
             n_representations = self.n_representations
         )
 
-    def fit(self, X, y=None):
+    def fit(self, X=None, y=None):
         """
         Computes the intermediate features between the pairs of principal vectors.
 
@@ -127,11 +127,11 @@ class FlowProjector(BaseEstimator):
         if self.use_data:
             if self.source_data is None or self.source_data.shape[0] == 0:
                 self.source_data = X
-            else:
+            elif X is not None:
                 self.source_data = np.concatenate([self.source_data, X])
 
         # Standardize data
-        self.standard_scaler_input_.fit(X)
+        self.standard_scaler_input_.fit(self.source_data)
         self.source_data = self.standard_scaler_source_.fit_transform(self.source_data)
         self.target_data = self.standard_scaler_target_.fit_transform(self.target_data)
 
@@ -339,8 +339,9 @@ class ConsensusRepresentation(BaseEstimator):
         target_data: np.ndarray (n_samples, n_genes)
             Data use as target, e.g. tumor transcriptome read outs.
 
-        n_factors: int
-            Number of domain-invariant factors.
+        n_factors : int or dict
+            Number of domain-specific factors to extract from the data (e.g. using PCA, ICA).
+            Can be int (same for source and target) or dictionary of form {'source': int, 'target': int}.
 
         n_pv: int
             Number of principal vectors.
@@ -367,7 +368,10 @@ class ConsensusRepresentation(BaseEstimator):
         self.source_data = source_data
         self.target_data = target_data
 
-        self.n_factors = n_factors
+        if type(n_factors) == int:
+            self.n_factors = {'source': n_factors, 'target': n_factors}
+        else:
+            self.n_factors = n_factors
         self.n_pv = n_pv
         self.dim_reduction = dim_reduction
         self.dim_reduction_target = dim_reduction_target
@@ -394,6 +398,7 @@ class ConsensusRepresentation(BaseEstimator):
     def _find_common_representation(self):
         flow_vectors = self.flow.transpose(1,0,2)
         self.consensus_representation = []
+        self.optimal_time_ = []
 
         for i in range(self.n_pv):
             source_projected = flow_vectors[i].dot(self.source_data.transpose())
@@ -404,9 +409,11 @@ class ConsensusRepresentation(BaseEstimator):
                 for (s,t) in zip(source_projected, target_projected)
             ]
 
+            self.optimal_time_.append(np.argmin(ks_stats))
             self.consensus_representation.append(flow_vectors[i, np.argmin(ks_stats)])
 
         self.consensus_representation = np.array(self.consensus_representation).transpose()
+        self.optimal_tau_ = np.array(self.optimal_time_) / self.n_representations
 
         return self.consensus_representation
 
@@ -434,11 +441,11 @@ class ConsensusRepresentation(BaseEstimator):
         if self.use_data:
             if self.source_data is None or self.source_data.shape[0] == 0:
                 self.source_data = X
-            else:
+            elif X is not None:
                 self.source_data = np.concatenate([self.source_data, X])
 
         # Standardize data
-        self.standard_scaler_input_.fit(X)
+        self.standard_scaler_input_.fit(self.source_data)
         self.source_data = self.standard_scaler_source_.fit_transform(self.source_data)
         self.target_data = self.standard_scaler_target_.fit_transform(self.target_data)
 

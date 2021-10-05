@@ -79,8 +79,9 @@ class PVComputation:
         """
         Parameters
         -------
-        n_factors : int
+        n_factors : int or dict
             Number of domain-specific factors to extract from the data (e.g. using PCA, ICA).
+            Can be int (same for source and target) or dictionary of form {'source': int, 'target': int}.
 
         n_pv : int
             Number of principal vectors to find from the independently computed factors.

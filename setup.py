@@ -4,7 +4,7 @@ from setuptools.extension import Extension
 
 setup(
     name='precise',
-    version='1.2',
+    version='1.3',
     description='Patient Response Estimation Corrected by Interpolation of Subspaces Embeddings',
     author='Soufiane Mourragui',
     author_email='s.mourragui@nki.nl',
