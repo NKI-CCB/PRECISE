@@ -418,7 +418,7 @@ class ConsensusRepresentation(BaseEstimator):
         return self.consensus_representation
 
 
-    def fit(self, X, y=None):
+    def fit(self, X=None, y=None):
         """
         Computes the principal vectors, interpolates between them, projects source and target
         data, and finally computes, by comparing for each pair source and target projected data, 
