@@ -22,7 +22,7 @@ setup(
     ],
     install_requires=[
         'joblib==1.0.1',
-        'numpy==1.19.5',
+        'numpy==1.22.0',
         'pandas==1.1.5',
         'scikit-learn==0.24.1',
         'scipy==1.5.4',

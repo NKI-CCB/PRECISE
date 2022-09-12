@@ -9,7 +9,7 @@ jedi @ file:///opt/concourse/worker/volumes/live/6806909a-570d-4af7-44c0-77bee22
 joblib==1.0.1
 jupyter-client @ file:///tmp/build/80754af9/jupyter_client_1601311786391/work
 jupyter-core==4.6.3
-numpy==1.19.5
+numpy==1.22.0
 pandas==1.1.5
 parso @ file:///tmp/build/80754af9/parso_1596826841367/work
 pexpect==4.8.0
