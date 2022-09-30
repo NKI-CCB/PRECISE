@@ -21,7 +21,7 @@ setup(
         'Programming Language :: Python :: 3.7'
     ],
     install_requires=[
-        'joblib==1.0.1',
+        'joblib==1.2.0',
         'numpy==1.22.0',
         'pandas==1.1.5',
         'scikit-learn==0.24.1',
