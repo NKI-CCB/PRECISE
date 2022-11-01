@@ -6,7 +6,7 @@ ipykernel @ file:///opt/concourse/worker/volumes/live/43eaf185-e9cd-4e78-5afa-c1
 ipython @ file:///opt/concourse/worker/volumes/live/8c453bb6-500b-4747-778c-a236ae4a574d/volume/ipython_1593447395779/work
 ipython-genutils==0.2.0
 jedi @ file:///opt/concourse/worker/volumes/live/6806909a-570d-4af7-44c0-77bee22df359/volume/jedi_1611333753991/work
-joblib==1.0.1
+joblib==1.2.0
 jupyter-client @ file:///tmp/build/80754af9/jupyter_client_1601311786391/work
 jupyter-core==4.6.3
 numpy==1.22.0
