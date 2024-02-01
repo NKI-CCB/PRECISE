@@ -24,7 +24,7 @@ setup(
         'joblib==1.2.0',
         'numpy==1.22.0',
         'pandas==1.1.5',
-        'scikit-learn==0.24.1',
+        'scikit-learn==1.0.1',
         'scipy==1.10.0',
         'six==1.15.0'
     ],
